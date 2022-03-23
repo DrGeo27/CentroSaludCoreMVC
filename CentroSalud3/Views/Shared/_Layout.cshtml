@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CentroSalud3</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index">🏥 Inicio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary font-weight-bold btn btn-outline-light border" asp-area="" asp-controller="Paciente" asp-action="Index">🤕 Pacientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary font-weight-bold btn btn-outline-light border" asp-area="" asp-controller="Medico" asp-action="Index">👨‍⚕️ Médicos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-success font-weight-bold btn btn-outline-light border" asp-area="" asp-controller="Medicacion" asp-action="Index">💊 Farmacia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-info font-weight-bold btn btn-outline-light border" asp-area="" asp-controller="Enfermera" asp-action="Index">👩‍⚕️ Enfermeras</a>
+                        </li>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold btn btn-outline-dark border" asp-area="" asp-controller="Account" asp-action="Login">🔐 Iniciar sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold btn btn-outline-light border" asp-area="" asp-controller="Account" asp-action="Register">🔓 Regístrese</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold btn btn-outline-light border" asp-area="" asp-controller="Account" asp-action="Logout">❌ Salir</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted text-sm-right">
+        <div class="container">
+            🏥 15/03/2022 - CentroSalud3 | David Mencía | AA**00aa
+            &nbsp;
+            <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="Account" asp-action="Index">Cuentas</a>
+            <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="Role" asp-action="Index">Roles</a>
+        </div>
+</footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

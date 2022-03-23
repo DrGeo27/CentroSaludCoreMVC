@@ -1,0 +1,54 @@
+﻿@using CentroSalud3.ViewModels
+@model PacienteAsignacionMedicacionViewModel
+
+<h2 class="text-lg-center text-secondary">Pauta del fármaco <span class="text-success">@ViewBag.Medicacion.MedicacionNombre</span> a pacientes</h2>
+
+<table class="table table-striped table-hover table-bordered text-center table-success">
+    <thead>
+        <tr>
+            <th>Fármaco</th>
+            <th>Dosis</th>
+            <th>Grupo</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.Medicacion.MedicacionNombre</td>
+            <td>@ViewBag.Medicacion.MedicacionDosis</td>
+            <td>@ViewBag.Medicacion.MedicacionGrupo</td>
+            <td>@ViewBag.Medicacion.MedicacionDescripcion</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+
+<h3 class="text-center text-secondary">Pautar a nuevos pacientes</h3>
+@{
+    if (ViewBag.Medicacion.NumPacientesPautados < 0)
+    {
+        <h3 class="text-danger">Ha ocurrido un error. Consulte con el administrador.</h3>
+        <p>
+            <a asp-controller="Medicacion" asp-action="Index" class="btn btn-success">Atrás</a>
+        </p>
+    }
+    else
+    {
+        <form asp-controller="Paciente" asp-action="PacienteAsignacionMedicacion" method="post">
+            <div>
+                <input type="hidden" asp-for="PacienteConMedicacion.Medicacion.MedicacionId" value="@ViewBag.Medicacion.MedicacionId" />
+            </div>
+
+            <div>
+                <label asp-for="PacienteConMedicacion.Paciente.PacienteNombre"></label>
+                <select asp-for="PacienteConMedicacion.Paciente.PacienteId" asp-items="@Model.PacientesLista"></select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Confirmar</button>
+                <a asp-controller="Medicacion" asp-action="Index" class="btn btn-outline-danger">Cancelar</a>
+            </div>
+        </form>
+    }
+}

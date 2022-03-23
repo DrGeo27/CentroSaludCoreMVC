@@ -1,0 +1,66 @@
+﻿@model CentroSalud3.Models.Paciente
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detalles</title>
+</head>
+
+<body>
+<div>
+    <h4 class="text-secondary">@Model.PacienteNombre</h4>
+
+    <hr />
+
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PacienteNombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PacienteNombre)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PacienteFxNacimiento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PacienteFxNacimiento)
+        </dd>
+
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PacienteEdad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PacienteEdad)
+        </dd>*@
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PacienteSexo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PacienteSexo)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PacienteTelefono)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PacienteTelefono)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PacienteEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PacienteEmail)
+        </dd>
+    </dl>
+</div>
+<div class="form-group">
+    <a asp-action="Edit" asp-route-id="@Model.PacienteId" class="btn btn-outline-warning">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Atrás</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@using CentroSalud3.ViewModels
+@model PacienteAsignacionEnfermeraViewModel
+
+<h2 class="text-lg-center text-secondary">Asignación de pacientes a la enfermera <span class="text-info">@ViewBag.Enfermera.EnfermeraNombre</span></h2>
+
+<table class="table table-striped table-hover table-bordered text-center table-info">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Consulta</th>
+            <th>Número de pacientes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.Enfermera.EnfermeraNombre</td>
+            <td>@ViewBag.Enfermera.EnfermeraConsulta</td>
+            <td>@ViewBag.Enfermera.EnfermeraNumPacientes</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+
+<h3 class="text-center text-secondary">Asignación de nuevos pacientes</h3>
+@{
+    if (ViewBag.Enfermera.EnfermeraNumPacientes >= 50)
+    {
+        <h3 class="text-danger">La enfermera @ViewBag.Enfermera.EnfermeraNombre no admite más pacientes</h3>
+        <p>
+            <a asp-controller="Enfermera" asp-action="Index" class="btn btn-info">Atrás</a>
+        </p>
+    }
+    else
+    {
+        <form asp-controller="Paciente" asp-action="PacienteAsignacionEnfermera" method="post">
+            <div>
+                <input type="hidden" asp-for="PacienteConEnfermera.Enfermera.EnfermeraId" value="@ViewBag.Enfermera.EnfermeraId" />
+            </div>
+
+            <div>
+                <label asp-for="PacienteConEnfermera.Paciente.PacienteNombre"></label>
+                <select asp-for="PacienteConEnfermera.Paciente.PacienteId" asp-items="@Model.PacientesLista"></select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-info">Confirmar</button>
+                <a asp-controller="Enfermera" asp-action="Index" class="btn btn-outline-danger">Cancelar</a>
+            </div>
+        </form>
+    }
+}

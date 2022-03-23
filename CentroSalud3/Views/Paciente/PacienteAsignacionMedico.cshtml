@@ -1,0 +1,52 @@
+﻿@using CentroSalud3.ViewModels
+@model PacienteAsignacionMedicoViewModel
+
+<h2 class="text-lg-center text-secondary">Asignación de pacientes al médico <span class="text-primary">@ViewBag.Medico.MedicoNombre</span></h2>
+
+<table class="table table-striped table-hover table-bordered text-center table-primary">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Consulta</th>
+            <th>Número de pacientes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.Medico.MedicoNombre</td>
+            <td>@ViewBag.Medico.MedicoConsulta</td>
+            <td>@ViewBag.Medico.NumPacientes</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+
+<h3 class="text-center text-secondary">Asignación de nuevos pacientes</h3>
+@{ 
+    if (ViewBag.Medico.NumPacientes >= 50)
+    {
+        <h3 class="text-danger">El médico @ViewBag.Medico.MedicoNombre no admite más pacientes</h3>
+        <p>
+            <a asp-controller="Medico" asp-action="Index" class="btn btn-primary">Atrás</a>
+        </p>
+    }
+    else
+    {
+        <form asp-controller="Paciente" asp-action="PacienteAsignacionMedico" method="post">
+            <div>
+                <input type="hidden" asp-for="PacienteConMedico.Medico.MedicoId" value="@ViewBag.Medico.MedicoId" />
+            </div>
+
+            <div>
+                <label asp-for="PacienteConMedico.Paciente.PacienteNombre"></label>
+                <select asp-for="PacienteConMedico.Paciente.PacienteId" asp-items="@Model.PacientesLista"></select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Confirmar</button>
+                <a asp-controller="Medico" asp-action="Index" class="btn btn-outline-danger">Cancelar</a>
+            </div>
+        </form>
+    }
+}

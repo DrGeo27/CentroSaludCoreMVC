@@ -1,0 +1,65 @@
+﻿@model CentroSalud3.Models.Medico
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Nuevo médico</title>
+</head>
+
+<body>
+    <h4 class="text-primary">Nuevo médico</h4>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="MedicoNombre" class="control-label"></label>
+                <input asp-for="MedicoNombre" class="form-control" />
+                <span asp-validation-for="MedicoNombre" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MedicoConsulta" class="control-label"></label>
+                <input asp-for="MedicoConsulta" class="form-control" />
+                <span asp-validation-for="MedicoConsulta" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MedicoTelefono" class="control-label"></label>
+                <input asp-for="MedicoTelefono" class="form-control" />
+                <span asp-validation-for="MedicoTelefono" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MedicoEmail" class="control-label"></label>
+                <input asp-for="MedicoEmail" class="form-control" />
+                <span asp-validation-for="MedicoEmail" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NumPacientes" class="control-label"></label>
+                <input asp-for="NumPacientes" class="form-control" readonly="readonly" value="0" />
+                <span asp-validation-for="NumPacientes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Confirmar" class="btn btn-success" />
+                <button type="reset" class="btn btn-warning">Reiniciar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-danger">Atrás</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿@using CentroSalud3.Models
+@model IEnumerable<Enfermera>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <h2 class="text-info text-lg-center font-weight-bold">Cartera de enfermeras</h2>
+
+    <p>
+        <a asp-action="Create" class="btn btn-info btn-lg">Nueva enfermera</a>
+    </p>
+
+    <table class="table table-striped table-bordered table-hover table-info text-center">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.EnfermeraNombre)</th>
+                <th>@Html.DisplayNameFor(model => model.EnfermeraConsulta)</th>
+                <th>@Html.DisplayNameFor(model => model.EnfermeraTelefono)</th>
+                <th>@Html.DisplayNameFor(model => model.EnfermeraEmail)</th>
+                <th>@Html.DisplayNameFor(model => model.EnfermeraNumPacientes)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in Model)
+            {
+                <tr>
+                    <td>
+                        @e.EnfermeraNombre &nbsp;
+                        <a asp-controller="Paciente" asp-action="PacienteAsignacionEnfermera"
+                           asp-route-id="@e.EnfermeraId"
+                           class="btn btn-outline-secondary btn-sm">
+                            Asignar paciente
+                        </a>
+                    </td>
+                    <td>@e.EnfermeraConsulta</td>
+                    <td>@e.EnfermeraTelefono</td>
+                    <td>@e.EnfermeraEmail</td>
+                    <td>
+                        @e.EnfermeraNumPacientes &nbsp;
+                    <a asp-controller="Paciente" asp-action="TodosPacientesConEnfermera"
+                       asp-route-id="@e.EnfermeraId" class="btn btn-outline-secondary btn-sm">
+                        Ver pacientes
+                    </a>
+                </td>
+                <td class="btn-group-sm">
+                    <a asp-action="Details" asp-route-id="@e.EnfermeraId" class="btn btn-outline-info text-dark">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@e.EnfermeraId" class="btn btn-outline-warning text-dark">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@e.EnfermeraId" class="btn btn-outline-danger text-dark">Eliminar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿@using CentroSalud3.ViewModels
+@model IEnumerable<AccountAllUserViewModel>
+
+<p>
+    <a asp-action="Register" class="btn btn-lg btn-dark">Nuevo usuario</a>
+</p>
+
+@{
+    if (Model.Count() < 1)
+    {
+        <p class="text-danger">No hay usuarios en la base de datos</p>
+    }
+
+    else
+    {
+        <h2 class="text-dark text-lg-center font-weight-bold">Índice de usuarios</h2>
+
+        <table class="table table-striped table-bordered table-hover table-dark text-center">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.User</td>
+                        <td>@user.Role</td>
+                        <td>
+                            <a asp-controller="Role" asp-action="AddUserRole"
+                               asp-route-id="@user.User.Id" class="btn btn-outline-dark text-light">Asignar rol</a>
+                        </td>
+                        <td>
+                            <a asp-controller="Role" asp-action="DeleteUserRole"
+                               asp-route-id="@user.User.Id" asp-route-role="@user.Role" class="btn btn-outline-danger">Retirar rol</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>            
+        </table>
+    }
+}

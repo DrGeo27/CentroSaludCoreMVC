@@ -1,0 +1,60 @@
+﻿@model CentroSalud3.Models.Enfermera
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detalles</title>
+</head>
+
+<body>
+    <div>
+        <h4 class="text-info">Enf. @Model.EnfermeraNombre</h4>
+
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EnfermeraNombre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EnfermeraNombre)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EnfermeraConsulta)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EnfermeraConsulta)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EnfermeraTelefono)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EnfermeraTelefono)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EnfermeraEmail)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EnfermeraEmail)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EnfermeraNumPacientes)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EnfermeraNumPacientes)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="form-group">
+        <a asp-action="Edit" asp-route-id="@Model.EnfermeraId" class="btn btn-outline-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-info">Atrás</a>
+    </div>
+</body>
+</html>

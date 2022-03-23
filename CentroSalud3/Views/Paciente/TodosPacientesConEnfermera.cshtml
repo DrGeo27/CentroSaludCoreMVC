@@ -1,0 +1,48 @@
+﻿@using CentroSalud3.Models
+@model IEnumerable<Paciente>
+
+@{
+    if (Model.Count() > 0)
+    {
+        <h3 class="text-lg-center text-secondary">Pacientes de la <span class="text-info">Enf. @ViewData["enfermera"]</span></h3>
+        <table class="table table-bordered table-striped table-secondary text-center">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nombre</th>
+                    <th>F. Nacimiento</th>
+                    @*<th>Edad</th>*@
+                    <th>Sexo</th>
+                    <th>Núm. Teléfono</th>
+                    <th>Correo electrónico</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pce in Model)
+                {
+                    <tr>
+                        <td>@pce.PacienteId</td>
+                        <td>@pce.PacienteNombre</td>
+                        <td>@pce.PacienteFxNacimiento.ToShortDateString()</td>
+                        @*<td>@pce.PacienteEdad</td>*@
+                        <td>@pce.PacienteSexo</td>
+                        <td>@pce.PacienteTelefono</td>
+                        <td>@pce.PacienteEmail</td>
+                        <td>
+                            <a asp-action="DeleteAsignacionEnf" asp-route-id="@pce.PacienteId" class="btn btn-outline-danger btn-sm">Dar de baja</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-danger font-weight-bold text-lg-left">No hay pacientes asignados a esta enfermera</p>
+    }
+}
+
+<p>
+    <a asp-controller="Enfermera" asp-action="Index" class="btn btn-info">Atrás</a>
+</p>

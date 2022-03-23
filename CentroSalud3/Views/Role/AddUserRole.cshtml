@@ -1,0 +1,37 @@
+﻿@using CentroSalud3.ViewModels
+@model RoleAddUserRoleViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Asignar rol</title>
+</head>
+
+<body>
+<h3 class="text-dark text-center">Seleccione un rol para @Model.User.UserName</h3>
+
+<form asp-controller="Role" asp-action="AddUserRole" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="Role" class="control-label"></label>
+        <input asp-for="@Model.User.Id" type="hidden" />
+        <select asp-for="Role" asp-items="@Model.RoleList"></select>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Confirmar" class="btn btn-success" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index" asp-controller="Account" class="btn btn-outline-danger">Atrás</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>
